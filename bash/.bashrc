@@ -12,6 +12,13 @@ if [ -d "$HOME/.local/bin" ] ;
 	then PATH="$HOME/.local/bin:$PATH"
 fi
 
+if [ -d "$HOME/go/bin" ] ;
+    then PATH="$HOME/go/bin:$PATH"
+fi
+
+if [ -d "$HOME/scripts" ] ;
+    then PATH="$HOME/scripts:$PATH"
+fi
 
 # PS1
 
@@ -63,6 +70,7 @@ function parse_git_dirty {
 	fi
 }
 
+# [hostname:directory](git)$
 export PS1="[\h:\w]\`parse_git_branch\`\\$ "
 
 
@@ -88,8 +96,22 @@ alias grm="git rm"
 
 alias e="source env/bin/activate"
 
+alias klogs="kubectl logs --follow"
+alias mkube="minikube kubectl --"
+
 
 # Exports
 
 
 export EDITOR="vim"
+
+
+# Completion
+
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi

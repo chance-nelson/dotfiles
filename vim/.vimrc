@@ -1,23 +1,57 @@
-call plug#begin('~/.vim/plugged')
-Plug 'junegunn/vim-easy-align'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'fatih/vim-go', { 'tag': '*' }
-Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-Plug 'ervandew/supertab'
-Plug 'davidhalter/jedi-vim'
-call plug#end()
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
-" pymode config
-let g:pymode_rope = 0
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'git://git.wincent.com/command-t.git'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'leafgarland/typescript-vim'
 
-" jedi-vim config
-let g:jedi#show_call_signatures = "1"
+" Python IDE
+Plugin 'python-mode/python-mode'
+let g:pymode_python = 'python3'
+let g:pymode_syntax = 1
+let g:pymode_syntax_print_as_function = 1
+let g:pymode_syntax_highlight_self = 1
+let g:pymode_syntax_builtin_objs = 1
+let g:pymode_syntax_highlight_exceptions = 1
 
+" use tab with autocomplete
+Plugin 'ervandew/supertab'
 
+" Python autocomplete
+Plugin 'davidhalter/jedi-vim'
+
+" Badwolf colorscheme
+Plugin 'sjl/badwolf'
+
+" Protobuf syntax
+Plugin 'uarun/vim-protobuf'
+
+" C#
+Plugin 'OmniSharp/omnisharp-vim'
+
+" Searching
+Plugin 'RRethy/vim-illuminate'
+Plugin 'inside/vim-search-pulse'
+
+" All of your Plugins must be added before the following line
+call vundle#end()
+
+filetype plugin on
+filetype indent on
+colorscheme slate
+set number
+set nowrap
 set tabstop=4
 set shiftwidth=4
 set expandtab
-set number
-syntax on
+
+autocmd FileType typescript setlocal shiftwidth=2 softtabstop=2 expandtab
+autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2 expandtab
