@@ -11,6 +11,8 @@ Plugin 'VundleVim/Vundle.vim'
 
 " TS/Node
 Plugin 'leafgarland/typescript-vim'
+Plugin 'quramy/tsuquyomi' 
+let g:tsuquyomi_completion_detail = 1
 
 " Golang
 Plugin 'fatih/vim-go'
@@ -26,12 +28,10 @@ let g:pymode_syntax_highlight_exceptions = 1
 
 " use tab with autocomplete
 Plugin 'ervandew/supertab'
+let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 
 " Python autocomplete
 Plugin 'davidhalter/jedi-vim'
-
-" Badwolf colorscheme
-Plugin 'sjl/badwolf'
 
 " Protobuf syntax
 Plugin 'uarun/vim-protobuf'
@@ -55,6 +55,7 @@ set nowrap
 set tabstop=4
 set shiftwidth=4
 set expandtab
+syntax on
 
 " No normies here
 noremap  <Up> ""
@@ -67,9 +68,9 @@ noremap  <Right> ""
 noremap! <Right> <Esc> 
 
 " Custom spacing
-autocmd FileType typescript setlocal shiftwidth=2 softtabstop=2 expandtab
+autocmd FileType typescript setlocal shiftwidth=2 softtabstop=2 expandtab completeopt+=menu
 autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2 expandtab
 
 " Leader
-let mapLeader="<Space>"
+let mapleader=" "
 set showcmd
