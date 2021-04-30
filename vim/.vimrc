@@ -1,16 +1,6 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" No normies here
-noremap  <Up> ""
-noremap! <Up> <Esc>
-noremap  <Down> ""
-noremap! <Down> <Esc>
-noremap  <Left> ""
-noremap! <Left> <Esc>
-noremap  <Right> ""
-noremap! <Right> <Esc> 
-
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -18,10 +8,12 @@ call vundle#begin()
 "call vundle#begin('~/some/path/here')
 
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'git://git.wincent.com/command-t.git'
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+
+" TS/Node
 Plugin 'leafgarland/typescript-vim'
+
+" Golang
+Plugin 'fatih/vim-go'
 
 " Python IDE
 Plugin 'python-mode/python-mode'
@@ -50,6 +42,7 @@ Plugin 'OmniSharp/omnisharp-vim'
 " Searching
 Plugin 'RRethy/vim-illuminate'
 Plugin 'inside/vim-search-pulse'
+Plugin 'git://git.wincent.com/command-t.git'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
@@ -63,5 +56,20 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
+" No normies here
+noremap  <Up> ""
+noremap! <Up> <Esc>
+noremap  <Down> ""
+noremap! <Down> <Esc>
+noremap  <Left> ""
+noremap! <Left> <Esc>
+noremap  <Right> ""
+noremap! <Right> <Esc> 
+
+" Custom spacing
 autocmd FileType typescript setlocal shiftwidth=2 softtabstop=2 expandtab
 autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2 expandtab
+
+" Leader
+let mapLeader="<Space>"
+set showcmd
