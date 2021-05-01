@@ -5,7 +5,7 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+" call vundle#begin('~/some/path/here')
 
 Plugin 'VundleVim/Vundle.vim'
 
@@ -43,6 +43,9 @@ Plugin 'OmniSharp/omnisharp-vim'
 Plugin 'RRethy/vim-illuminate'
 Plugin 'inside/vim-search-pulse'
 Plugin 'git://git.wincent.com/command-t.git'
+
+" Auto-close brackets and quotes
+Plugin 'jiangmiao/auto-pairs'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
