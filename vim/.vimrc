@@ -52,23 +52,12 @@ call vundle#end()
 
 filetype plugin on
 filetype indent on
-colorscheme slate
 set number
 set nowrap
 set tabstop=4
 set shiftwidth=4
 set expandtab
 syntax on
-
-" No normies here
-noremap  <Up> ""
-noremap! <Up> <Esc>
-noremap  <Down> ""
-noremap! <Down> <Esc>
-noremap  <Left> ""
-noremap! <Left> <Esc>
-noremap  <Right> ""
-noremap! <Right> <Esc> 
 
 " Custom spacing
 autocmd FileType typescript setlocal shiftwidth=2 softtabstop=2 expandtab completeopt+=menu
