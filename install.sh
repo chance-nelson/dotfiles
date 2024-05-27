@@ -2,7 +2,7 @@
 
 
 if [[ $# -eq 0 ]]; then
-    echo "Usage: ./install.sh <vim> <bash> <i3>"
+    echo "Usage: ./install.sh <vim> <bash> <i3> <xonsh>"
 fi
 
 
@@ -23,4 +23,10 @@ if [[ "$*" == *i3* ]]; then
     mkdir -p $HOME/.config/i3
     cp ./i3/* $HOME/.config/i3/
     echo "i3 ✔️"
+fi
+
+
+if [[ "$*" == *xonsh* ]]; then
+    cp ./xonsh/* $HOME/
+    echo "xonsh ✔️"
 fi

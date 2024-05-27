@@ -1,0 +1,60 @@
+#!/usr/bin/xonsh
+
+
+from xonsh.built_ins import XSH
+import xonsh
+
+
+def add_alias(alias, cmd):
+    aliases[alias] = cmd    
+
+
+def git_status():
+    gs = $(git status)
+    stat = ""
+    if "modified" in gs:
+        stat += ">"
+
+    if "Untracked files" in gs:
+        stat += "?"
+
+    if "Your branch is ahead of" in gs:
+        stat += "*"
+
+    if "new file:" in gs:
+        stat += "+"
+
+    if "renamed:" in gs:
+        stat += ">"
+
+    if "deleted:" in gs:
+        stat += "x"
+
+    return stat
+
+
+# Prompt
+$PROMPT = lambda: '[{hostname}:{cwd_base}][{curr_branch}' + git_status() + ']$ ' if xonsh.prompt.vc.current_branch() else '[{hostname}:{cwd_base}]$ '
+
+# Path Inserts
+XSH.env["PATH"].append("$HOME/.local/bin")
+
+# Aliases
+add_alias("ls",'ls --color=auto')
+add_alias("la",'ls -a')
+add_alias("ll",'ls -la')
+add_alias("l",'ls')
+add_alias("l.", "ls -A | egrep '^\.'")
+add_alias("setconfig", "git config user.name 'Chance Nelson'; git config user.email git@chancen.xyz")
+add_alias("gi", "git init")
+add_alias("gs", "git status")
+add_alias("ga", "git add")
+add_alias("gc", "git commit")
+add_alias("gd", "git diff")
+add_alias("gp", "git push")
+add_alias("pull", "git pull")
+add_alias("grm", "git rm")
+add_alias("e", "source env/bin/activate")
+
+# Exports
+$EDITOR = "vim"
