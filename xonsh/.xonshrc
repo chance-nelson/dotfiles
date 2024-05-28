@@ -1,16 +1,22 @@
-#!/usr/bin/xonsh
-
-
 from xonsh.built_ins import XSH
 import xonsh
+
+
+@events.on_chdir
+def save_curdir(olddir, newdir, **kwargs):
+    with open($HOME + "/.curdir", "w") as f:
+        f.write(newdir)
 
 
 def add_alias(alias, cmd):
     aliases[alias] = cmd    
 
 
-def git_status():
-    gs = $(git status)
+def prompt():
+    host = $(hostname).strip()
+    directory = $(pwd).strip().replace($HOME, "~")
+
+    gs = $(git status 2>/dev/null)
     stat = ""
     if "modified" in gs:
         stat += ">"
@@ -30,11 +36,18 @@ def git_status():
     if "deleted:" in gs:
         stat += "x"
 
-    return stat
+    prompt = f"[{host}:{directory}]"
+
+    if stat:
+        prompt += "[{curr_branch}" + stat + "]"
+
+    prompt += "$ "
+
+    return prompt
 
 
 # Prompt
-$PROMPT = lambda: '[{hostname}:{cwd_base}][{curr_branch}' + git_status() + ']$ ' if xonsh.prompt.vc.current_branch() else '[{hostname}:{cwd_base}]$ '
+$PROMPT = prompt 
 
 # Path Inserts
 XSH.env["PATH"].append("$HOME/.local/bin")
@@ -44,7 +57,6 @@ add_alias("ls",'ls --color=auto')
 add_alias("la",'ls -a')
 add_alias("ll",'ls -la')
 add_alias("l",'ls')
-add_alias("l.", "ls -A | egrep '^\.'")
 add_alias("setconfig", "git config user.name 'Chance Nelson'; git config user.email git@chancen.xyz")
 add_alias("gi", "git init")
 add_alias("gs", "git status")
@@ -58,3 +70,12 @@ add_alias("e", "source env/bin/activate")
 
 # Exports
 $EDITOR = "vim"
+
+# Open shell in last dir
+try:
+    with open($HOME + "/.curdir", "r") as f:
+        cd @(f.read().strip())
+
+# .curdir probably just doesnt exist yet
+except:
+    pass
