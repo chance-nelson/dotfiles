@@ -27,6 +27,6 @@ fi
 
 
 if [[ "$*" == *xonsh* ]]; then
-    cp ./xonsh/* $HOME/
+    cp ./xonsh/.xonshrc $HOME/
     echo "xonsh ✔️"
 fi
